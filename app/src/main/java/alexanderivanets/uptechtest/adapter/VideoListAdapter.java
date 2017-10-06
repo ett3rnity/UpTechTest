@@ -76,4 +76,6 @@ public class VideoListAdapter  extends RecyclerView.Adapter<VideoListAdapter.Vid
         }
 
     }
+
+
 }

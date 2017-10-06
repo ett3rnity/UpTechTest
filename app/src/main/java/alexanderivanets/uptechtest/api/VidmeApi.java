@@ -1,5 +1,6 @@
 package alexanderivanets.uptechtest.api;
 
+import alexanderivanets.uptechtest.model.featured.FeaturedModel;
 import alexanderivanets.uptechtest.model.neu.NewModel;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -16,6 +17,6 @@ public interface VidmeApi {
                                         @Query("offset") int mOffset);
 
     @GET("/videos/featured")
-    Observable<NewModel> getFeaturedResponse(@Query("limit") int mLimit,
-                                        @Query("offset") int mOffset);
+    Observable<FeaturedModel> getFeaturedResponse(@Query("limit") int mLimit,
+                                                  @Query("offset") int mOffset);
 }
