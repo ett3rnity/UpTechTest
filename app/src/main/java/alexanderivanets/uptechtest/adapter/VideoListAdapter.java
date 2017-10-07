@@ -31,7 +31,12 @@ public class VideoListAdapter  extends RecyclerView.Adapter<VideoListAdapter.Vid
     }
 
     public void addItems(ArrayList<VideoItem> videoItems){
+        if (items != null){
         items.addAll(videoItems);
+        }else {
+            items = new ArrayList<>();
+            items.addAll(videoItems);
+        }
     }
 
 
@@ -46,15 +51,17 @@ public class VideoListAdapter  extends RecyclerView.Adapter<VideoListAdapter.Vid
     public void onBindViewHolder(VideoListVH holder, int position) {
         VideoItem item = items.get(position);
 
-        holder.likes.setText(item.getLikes());
+        holder.likes.setText(String.valueOf(item.getLikes()) + "likes");
         holder.name.setText(item.getTitle());
 
-        Picasso.with(context).load(item.getEmbUrl()).into(holder.imageView);
+        Picasso.with(context).load(item.getThumbUrl()).into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
+        if (items != null)
         return items.size();
+        else return 0;
     }
 
 

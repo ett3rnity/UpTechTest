@@ -6,45 +6,45 @@ import javax.inject.Inject;
 
 import alexanderivanets.uptechtest.api.VidmeApi;
 import alexanderivanets.uptechtest.model.VideoItem;
-import alexanderivanets.uptechtest.model.featured.FeaturedModel;
-import alexanderivanets.uptechtest.model.featured.Video;
+import alexanderivanets.uptechtest.model.neu.NewModel;
+import alexanderivanets.uptechtest.model.neu.Video;
 import alexanderivanets.uptechtest.view.IListView;
+import alexanderivanets.uptechtest.view.NewView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by alexander on 06.10.17.
+ * Created by alexander on 07.10.17.
  */
 
-public class FeaturedPresenter implements IFeaturedPresenter {
-
-    @Inject VidmeApi api;
-
-
-    private IListView view;
+public class NewPresenter implements IFeaturedPresenter {
+    private NewView view;
 
     @Inject
-    public FeaturedPresenter(){
-    }
+    VidmeApi api;
+
+    @Inject
+    public NewPresenter(){}
+
 
     @Override
     public void setView(IListView view) {
-        this.view = view;
+        this.view = (NewView) view;
     }
 
     @Override
     public void getVideos(int limit, int offset) {
-        Observable<FeaturedModel> observable = api.getFeaturedResponse(limit, offset);
+        Observable<NewModel> observable = api.getNewResponse(limit,offset);
 
         observable
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(featuredModel -> {
+                .map(newModel -> {
                     ArrayList<VideoItem> items = new ArrayList<>();
 
                     for (Video video:
-                         featuredModel.getVideos()) {
+                            newModel.getVideos()) {
                         items.add(new VideoItem(
                                 video.getEmbedUrl(),
                                 video.getThumbnailUrl(),
@@ -55,6 +55,5 @@ public class FeaturedPresenter implements IFeaturedPresenter {
                 })
                 .subscribe(videoItems -> view.showInfo(videoItems),
                         throwable -> view.showError(throwable.getLocalizedMessage()));
-
     }
 }

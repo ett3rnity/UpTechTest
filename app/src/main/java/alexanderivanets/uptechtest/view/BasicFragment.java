@@ -1,6 +1,5 @@
 package alexanderivanets.uptechtest.view;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-
 
 import java.util.ArrayList;
 
@@ -27,8 +25,11 @@ import alexanderivanets.uptechtest.utils.RecyclerScrollListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * Created by alexander on 07.10.17.
+ */
 
-public class FeaturedView extends Fragment implements IListView {
+public abstract class BasicFragment extends Fragment  implements IListView{
     @BindView(R.id.rv_fragment)
     RecyclerView recyclerView;
 
@@ -38,36 +39,22 @@ public class FeaturedView extends Fragment implements IListView {
     @Inject
     Context context;
 
-    @Inject
-    FeaturedPresenter presenter;
 
     private VideoListAdapter adapter;
     private GridLayoutManager manager;
 
-    private static int offset = 0;
-    private static int limit = 10;
+    protected static int offset = 0;
+    protected static int limit = 10;
 
-
-    public FeaturedView() {
-        // Required empty public constructor
-    }
-
-    public static FeaturedView newInstance() {
-        FeaturedView fragment = new FeaturedView();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        App.getAppComponent().inject(this);
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_featured, container, false);
         ButterKnife.bind(this, view);
         setRecyclerView();
@@ -77,14 +64,6 @@ public class FeaturedView extends Fragment implements IListView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.setView(this);
-        presenter.getVideos(limit, offset);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
     }
 
     private void setRecyclerView(){
@@ -99,18 +78,15 @@ public class FeaturedView extends Fragment implements IListView {
     @Override
     public void showInfo(ArrayList<VideoItem> items) {
         adapter.addItems(items);
-
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void showError(String e) {
-        Snackbar.make(parent, e, Snackbar.LENGTH_SHORT);
+        Snackbar.make(parent, e, Snackbar.LENGTH_LONG);
     }
 
-    private RecyclerScrollListener.LoadCallback callback = () -> {
-        offset += limit;
-        presenter.getVideos(limit, offset);};
+    protected RecyclerScrollListener.LoadCallback callback = () -> {};
 
 
 }
