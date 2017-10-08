@@ -8,7 +8,7 @@ import alexanderivanets.uptechtest.api.VidmeApi;
 import alexanderivanets.uptechtest.model.VideoItem;
 import alexanderivanets.uptechtest.model.featured.FeaturedModel;
 import alexanderivanets.uptechtest.model.featured.Video;
-import alexanderivanets.uptechtest.view.IListView;
+import alexanderivanets.uptechtest.view.fragment.IListView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

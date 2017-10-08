@@ -5,11 +5,9 @@ import javax.inject.Inject;
 import alexanderivanets.uptechtest.api.VidmeApi;
 import alexanderivanets.uptechtest.model.UserItem;
 import alexanderivanets.uptechtest.model.login.LogInModel;
-import alexanderivanets.uptechtest.view.ILogInView;
-import alexanderivanets.uptechtest.view.LogInView;
+import alexanderivanets.uptechtest.view.fragment.ILogInView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**

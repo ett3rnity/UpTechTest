@@ -1,6 +1,6 @@
 package alexanderivanets.uptechtest.presenter;
 
-import alexanderivanets.uptechtest.view.IListView;
+import alexanderivanets.uptechtest.view.fragment.IListView;
 
 /**
  * Created by alexander on 06.10.17.

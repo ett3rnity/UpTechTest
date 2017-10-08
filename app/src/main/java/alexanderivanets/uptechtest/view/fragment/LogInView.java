@@ -1,4 +1,4 @@
-package alexanderivanets.uptechtest.view;
+package alexanderivanets.uptechtest.view.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -29,6 +29,8 @@ import butterknife.OnClick;
 
 public class LogInView extends Fragment implements ILogInView {
 
+    private OnLogInListener logInListener;
+
     @Inject
     Context context;
 
@@ -56,7 +58,6 @@ public class LogInView extends Fragment implements ILogInView {
     public static LogInView newInstance() {
         
         Bundle args = new Bundle();
-        
         LogInView fragment = new LogInView();
         fragment.setArguments(args);
         return fragment;
@@ -82,15 +83,35 @@ public class LogInView extends Fragment implements ILogInView {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnLogInListener){
+            logInListener = (OnLogInListener) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        logInListener = null;
+    }
+
+    @Override
     public void onSuccess(UserItem item) {
         sharedPreferences.edit()
                 .putString(Config.PREF_TOKEN, item.getToken())
                 .putString(Config.PREF_USERNAME, item.getName())
                 .apply();
+        logInListener.logedIn();
+
     }
 
     @Override
     public void onFailure(String e) {
-        Toast.makeText(context, "Failed To Log In!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, e, Toast.LENGTH_SHORT).show();
+    }
+
+    public interface OnLogInListener{
+        void logedIn();
     }
 }

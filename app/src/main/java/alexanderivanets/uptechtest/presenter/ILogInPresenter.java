@@ -1,7 +1,6 @@
 package alexanderivanets.uptechtest.presenter;
 
-import alexanderivanets.uptechtest.view.ILogInView;
-import alexanderivanets.uptechtest.view.LogInView;
+import alexanderivanets.uptechtest.view.fragment.ILogInView;
 
 /**
  * Created by alexander on 07.10.17.

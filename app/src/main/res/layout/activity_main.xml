@@ -5,20 +5,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="alexanderivanets.uptechtest.view.MainView">
+    tools:context=".view.activity.MainView">
 
-    <android.support.design.widget.TabLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tl_main">
+        android:id="@+id/rl_top">
 
-    </android.support.design.widget.TabLayout>
+        <android.support.design.widget.TabLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tl_main"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ib_menu"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            style="?android:attr/actionOverflowButtonStyle">
+
+        </ImageButton>
+
+    </RelativeLayout>
+
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/vp_main"
-        android:layout_below="@id/tl_main">
+        android:layout_below="@id/rl_top">
 
     </android.support.v4.view.ViewPager>
 

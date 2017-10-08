@@ -1,4 +1,4 @@
-package alexanderivanets.uptechtest.view;
+package alexanderivanets.uptechtest.view.fragment;
 
 import alexanderivanets.uptechtest.model.UserItem;
 

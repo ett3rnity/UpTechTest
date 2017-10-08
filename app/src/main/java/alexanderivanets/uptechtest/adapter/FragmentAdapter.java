@@ -5,14 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import javax.inject.Inject;
-
 import alexanderivanets.uptechtest.di.app.App;
 import alexanderivanets.uptechtest.model.Config;
-import alexanderivanets.uptechtest.view.FeaturedView;
-import alexanderivanets.uptechtest.view.FeedView;
-import alexanderivanets.uptechtest.view.LogInView;
-import alexanderivanets.uptechtest.view.NewView;
+import alexanderivanets.uptechtest.view.fragment.FeaturedView;
+import alexanderivanets.uptechtest.view.fragment.FeedView;
+import alexanderivanets.uptechtest.view.fragment.LogInView;
+import alexanderivanets.uptechtest.view.fragment.NewView;
 
 /**
  * Created by alexander on 07.10.17.
@@ -46,10 +44,16 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
     }
 
 
+
+
     @Override
     public int getItemPosition(Object object) {
         return POSITION_NONE;
     }
+
+
+
+
 
     @Override
     public CharSequence getPageTitle(int position) {

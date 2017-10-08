@@ -1,5 +1,6 @@
-package alexanderivanets.uptechtest.view;
+package alexanderivanets.uptechtest.view.fragment;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +17,7 @@ import alexanderivanets.uptechtest.presenter.FeedPresenter;
  * Created by alexander on 08.10.17.
  */
 
-public class FeedView extends BasicFragment {
+public class FeedView extends ListFragment {
 
     @Inject
     SharedPreferences preferances;
@@ -37,12 +38,13 @@ public class FeedView extends BasicFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.getAppComponent().inject(this);
+        offset = 0;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        callback = () -> {offset += limit;presenter.getVideos(limit, offset);};
+        setListeners();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -51,5 +53,31 @@ public class FeedView extends BasicFragment {
         super.onViewCreated(view, savedInstanceState);
         presenter.setView(this);
         presenter.getVideos(limit, offset);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentRefreshListener){
+            fragmentRefreshListener = (FragmentRefreshListener) context;
+        }
+    }
+
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentRefreshListener = null;
+    }
+
+    private void setListeners(){
+        callback = () -> {offset += limit;presenter.getVideos(limit, offset);};
+
+        refreshListener =()->{
+            refreshAdapter();
+            offset = 0;
+            presenter.getVideos(limit, offset);
+            fragmentRefreshListener.refresh();
+            refreshLayout.setRefreshing(false);};
     }
 }

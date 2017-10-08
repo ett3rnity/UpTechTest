@@ -39,6 +39,15 @@ public class VideoListAdapter  extends RecyclerView.Adapter<VideoListAdapter.Vid
         }
     }
 
+    public void clearItems(){
+        if (items!=null){
+            items.clear();
+            items.trimToSize();
+        }else {
+            items = new ArrayList<>();
+        }
+    }
+
 
     @Override
     public VideoListVH onCreateViewHolder(ViewGroup parent, int viewType) {

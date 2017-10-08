@@ -4,12 +4,12 @@ import android.content.SharedPreferences;
 
 import javax.inject.Singleton;
 
-import alexanderivanets.uptechtest.view.FeaturedView;
+import alexanderivanets.uptechtest.view.fragment.FeaturedView;
 import alexanderivanets.uptechtest.di.module.ApiModule;
 import alexanderivanets.uptechtest.di.module.AppModule;
-import alexanderivanets.uptechtest.view.FeedView;
-import alexanderivanets.uptechtest.view.LogInView;
-import alexanderivanets.uptechtest.view.NewView;
+import alexanderivanets.uptechtest.view.fragment.FeedView;
+import alexanderivanets.uptechtest.view.fragment.LogInView;
+import alexanderivanets.uptechtest.view.fragment.NewView;
 import dagger.Component;
 
 /**

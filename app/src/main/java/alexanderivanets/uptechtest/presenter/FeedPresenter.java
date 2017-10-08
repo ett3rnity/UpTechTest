@@ -12,8 +12,7 @@ import alexanderivanets.uptechtest.model.Config;
 import alexanderivanets.uptechtest.model.VideoItem;
 import alexanderivanets.uptechtest.model.feed.FeedModel;
 import alexanderivanets.uptechtest.model.feed.Video;
-import alexanderivanets.uptechtest.view.FeedView;
-import alexanderivanets.uptechtest.view.IListView;
+import alexanderivanets.uptechtest.view.fragment.IListView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -24,7 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class FeedPresenter implements IFeaturedPresenter {
 
-    private FeedView view;
+    private IListView view;
     private static String token;
     private SharedPreferences preferences;
 
@@ -33,14 +32,14 @@ public class FeedPresenter implements IFeaturedPresenter {
 
     @Inject
     FeedPresenter(){
-        preferences = App.getAppComponent().sharedPreferences();
-        token = preferences.getString(Config.PREF_TOKEN, "");
     }
 
 
     @Override
     public void setView(IListView view) {
-        this.view = (FeedView) view;
+        this.view =  view;
+        preferences = App.getAppComponent().sharedPreferences();
+        token = preferences.getString(Config.PREF_TOKEN, "");
     }
 
     @Override
@@ -61,7 +60,9 @@ public class FeedPresenter implements IFeaturedPresenter {
                     }
                     return items;
                 })
-                .subscribe(items -> view.showInfo(items),
-                        throwable -> view.showError(throwable.getLocalizedMessage()));
+                .subscribe(
+                        items -> view.showInfo(items),
+                        throwable -> view.showError(throwable.getLocalizedMessage())
+                );
     }
 }

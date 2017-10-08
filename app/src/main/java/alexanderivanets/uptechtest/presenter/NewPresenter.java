@@ -8,8 +8,7 @@ import alexanderivanets.uptechtest.api.VidmeApi;
 import alexanderivanets.uptechtest.model.VideoItem;
 import alexanderivanets.uptechtest.model.neu.NewModel;
 import alexanderivanets.uptechtest.model.neu.Video;
-import alexanderivanets.uptechtest.view.IListView;
-import alexanderivanets.uptechtest.view.NewView;
+import alexanderivanets.uptechtest.view.fragment.IListView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -19,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class NewPresenter implements IFeaturedPresenter {
-    private NewView view;
+    private IListView view;
 
     @Inject
     VidmeApi api;
@@ -30,7 +29,7 @@ public class NewPresenter implements IFeaturedPresenter {
 
     @Override
     public void setView(IListView view) {
-        this.view = (NewView) view;
+        this.view = view;
     }
 
     @Override

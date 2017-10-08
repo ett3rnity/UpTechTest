@@ -1,4 +1,4 @@
-package alexanderivanets.uptechtest.view;
+package alexanderivanets.uptechtest.view.fragment;
 
 import java.util.ArrayList;
 
