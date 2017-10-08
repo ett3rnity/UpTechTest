@@ -1,9 +1,11 @@
 package alexanderivanets.uptechtest.di.module;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import javax.inject.Singleton;
 
+import alexanderivanets.uptechtest.model.Config;
 import dagger.Module;
 import dagger.Provides;
 
@@ -23,5 +25,11 @@ public class AppModule {
     @Singleton
     Context provideContext(){
         return context;
+    }
+
+    @Provides
+    @Singleton
+    SharedPreferences providePreferance(){
+        return context.getSharedPreferences(Config.PREF_NAME, 0);
     }
 }

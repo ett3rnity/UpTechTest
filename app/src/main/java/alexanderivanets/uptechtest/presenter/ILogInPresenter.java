@@ -1,5 +1,6 @@
 package alexanderivanets.uptechtest.presenter;
 
+import alexanderivanets.uptechtest.view.ILogInView;
 import alexanderivanets.uptechtest.view.LogInView;
 
 /**
@@ -8,5 +9,5 @@ import alexanderivanets.uptechtest.view.LogInView;
 
 public interface ILogInPresenter {
     void onLogin(String username, String password);
-    void setView(LogInView view);
+    void setView(ILogInView view);
 }
