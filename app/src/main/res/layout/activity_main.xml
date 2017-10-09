@@ -5,18 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.MainView">
+    tools:context=".view.activity.MainView"
+    android:id="@+id/rl_main">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rl_top">
+        android:id="@+id/rl_top"
+        android:background="@color/colorPrimaryDark">
 
         <android.support.design.widget.TabLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tl_main"
-            />
+            android:background="@color/colorPrimaryDark"
+            app:tabIndicatorColor="@color/colorTabIndicator"
+            app:tabTextColor="@color/cardview_dark_background"
+            app:tabSelectedTextColor="@color/colorText"/>
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -36,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/vp_main"
-        android:layout_below="@id/rl_top">
+        android:layout_below="@id/rl_top"
+        android:background="@color/colorBackground">
 
     </android.support.v4.view.ViewPager>
 

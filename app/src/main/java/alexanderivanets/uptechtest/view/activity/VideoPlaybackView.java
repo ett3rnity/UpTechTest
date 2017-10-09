@@ -52,8 +52,6 @@ public class VideoPlaybackView extends AppCompatActivity{
 
     private void setVideoView() {
         player.setWebChromeClient(new WebChromeClient());
-        player.getSettings().setPluginState(WebSettings.PluginState.ON);
-        player.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND);
         player.setWebViewClient(new WebViewClient());
         player.getSettings().setJavaScriptEnabled(true);
         player.loadUrl(videoURL);
