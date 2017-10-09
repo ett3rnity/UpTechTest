@@ -13,4 +13,6 @@ public class Config {
 
     public static final String PREF_TOKEN = "token";
     public static final String PREF_USERNAME = "username";
+
+    public static final String VIDEO_URL = "video URL";
 }

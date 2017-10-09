@@ -52,30 +52,13 @@ public class FeaturedView extends ListFragment {
         presenter.getVideos(limit, offset);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof FragmentRefreshListener){
-            fragmentRefreshListener = (FragmentRefreshListener) context;
-        }
-    }
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        fragmentRefreshListener = null;
-    }
-
     private void setListeners(){
         callback = () -> {offset += limit;presenter.getVideos(limit, offset);};
 
-        refreshListener =()->{
+        refreshListener =() -> {
             refreshAdapter();
             offset = 0;
-            presenter.getVideos(limit, offset);
-            fragmentRefreshListener.refresh();
-            refreshLayout.setRefreshing(false);};
+            presenter.getVideos(limit, offset);};
     }
 
 

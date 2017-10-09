@@ -21,8 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainView extends AppCompatActivity  implements LogInView.OnLogInListener,
-        ListFragment.FragmentRefreshListener{
+public class MainView extends AppCompatActivity  implements LogInView.OnLogInListener{
 
     @BindView(R.id.tl_main)
     TabLayout tabLayout;
@@ -33,14 +32,12 @@ public class MainView extends AppCompatActivity  implements LogInView.OnLogInLis
     @BindView(R.id.ib_menu)
     ImageButton menu;
 
-
-    private SharedPreferences sharedPreferences;
-
     @OnClick(R.id.ib_menu)
     void menuClick(){
         showPopup(menu);
     }
 
+    private SharedPreferences sharedPreferences;
     private FragmentAdapter adapter;
 
     @Override
@@ -86,8 +83,4 @@ public class MainView extends AppCompatActivity  implements LogInView.OnLogInLis
         popupMenu.show();
     }
 
-    @Override
-    public void refresh() {
-        //adapter.notifyDataSetChanged();
-    }
 }

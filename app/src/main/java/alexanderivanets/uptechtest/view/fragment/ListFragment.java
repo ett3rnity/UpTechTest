@@ -41,14 +41,13 @@ public abstract class ListFragment extends Fragment  implements IListView{
     @Inject
     Context context;
 
+    protected FragmentRefreshListener fragmentRefreshListener;
 
     private VideoListAdapter adapter;
     private GridLayoutManager manager;
 
     protected static int offset = 0;
     protected static int limit = 10;
-
-    protected FragmentRefreshListener fragmentRefreshListener ;
 
 
     @Override
@@ -92,6 +91,9 @@ public abstract class ListFragment extends Fragment  implements IListView{
     public void showInfo(ArrayList<VideoItem> items) {
         adapter.addItems(items);
         adapter.notifyDataSetChanged();
+        if(refreshLayout.isRefreshing()){
+            refreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -103,11 +105,11 @@ public abstract class ListFragment extends Fragment  implements IListView{
 
     protected SwipeRefreshLayout.OnRefreshListener refreshListener = ()->{};
 
-
     public interface FragmentRefreshListener{
         // 09.09.2017 deprecated, found better solution to reload current adapter
         void refresh();
     }
+
 
 
 }

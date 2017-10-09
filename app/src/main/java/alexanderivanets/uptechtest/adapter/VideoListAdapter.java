@@ -1,6 +1,8 @@
 package alexanderivanets.uptechtest.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import alexanderivanets.uptechtest.R;
+import alexanderivanets.uptechtest.model.Config;
 import alexanderivanets.uptechtest.model.VideoItem;
+import alexanderivanets.uptechtest.view.activity.VideoPlaybackView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,6 +26,7 @@ import butterknife.ButterKnife;
  */
 
 public class VideoListAdapter  extends RecyclerView.Adapter<VideoListAdapter.VideoListVH>{
+
     private Context context;
     private ArrayList<VideoItem> items;
 
@@ -64,6 +69,13 @@ public class VideoListAdapter  extends RecyclerView.Adapter<VideoListAdapter.Vid
         holder.name.setText(item.getTitle());
 
         Picasso.with(context).load(item.getThumbUrl()).into(holder.imageView);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, VideoPlaybackView.class);
+            intent.putExtra(Config.VIDEO_URL, item.getEmbUrl());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.getApplicationContext().startActivity(intent);
+        });
     }
 
     @Override
